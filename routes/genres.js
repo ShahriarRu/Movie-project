@@ -14,8 +14,9 @@ const Genre = mongoose.model('Genre', new mongoose.Schema({
 
 router.get('/', async (req, res) => {
   const genres = await Genre.find().sort('name');
-  res.json({"message": "Welcome to ZeptoBook Product app"});
-  res.send(genres);
+  //res.send(genres);
+  res.json(genres);
+  
 });
 
 router.post('/', async (req, res) => {
