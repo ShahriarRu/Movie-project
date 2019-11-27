@@ -15,11 +15,18 @@ const Genre = mongoose.model('Genre', new mongoose.Schema({
 router.get('/', async (req, res) => {
   const genres = await Genre.find().sort('name');
   //res.send(genres);
+  res.json("Welcome to movie genres.   Go to https://genre-project.herokuapp.com/api/genres to get all genrelist.    You can get genres by using specific id.   This app is ready for crud operation");
+  
+});
+
+router.get('/genres', async (req, res) => {
+  const genres = await Genre.find().sort('name');
+  //res.send(genres);
   res.json(genres);
   
 });
 
-router.post('/', async (req, res) => {
+router.post('/genres', async (req, res) => {
   const { error } = validateGenre(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -29,7 +36,7 @@ router.post('/', async (req, res) => {
   res.send(genre);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/genres:id', async (req, res) => {
   const { error } = validateGenre(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -42,7 +49,7 @@ router.put('/:id', async (req, res) => {
   res.send(genre);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/genres:id', async (req, res) => {
   const genre = await Genre.findByIdAndRemove(req.params.id);
 
   if (!genre) return res.status(404).send('The genre with the given ID was not found.');
@@ -50,7 +57,7 @@ router.delete('/:id', async (req, res) => {
   res.send(genre);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/genres:id', async (req, res) => {
   const genre = await Genre.findById(req.params.id);
 
   if (!genre) return res.status(404).send('The genre with the given ID was not found.');

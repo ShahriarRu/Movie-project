@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://shahriarcse26:1212663409@movies-19vvl.mongodb.ne
   .catch(err => console.error('Could not connect to MongoDB...'));
 
 app.use(express.json());
-app.use('/api/genres', genres);
+app.use('/api', genres);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
